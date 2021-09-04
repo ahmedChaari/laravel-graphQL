@@ -1,16 +1,22 @@
 <template>
-      <div>List Of post
+      <div class="container mx-auto px-4 w-full md:w-3/4 lg:w-3/5 xl:w-1/2 my-20" >
+         <h2 class="text-4xl"> List Of post</h2>
           <div v-if="$apollo.loading"></div>
           <div v-else>
-              <div v-for="post in posts" :key="post.id"> {{ post.id }} is titled: {{ post.title }} </div>
+              <PostListItem v-for="post in posts" :key="post.id" :post="post" class="mt-10"></PostListItem>
+            
           </div>
-      </div>
+      </div> 
 </template>
 
 <script>
 import gql from "graphql-tag";
+import PostListItem from "./components/PostListItem.vue";
 
 export default {
+    components:{
+        PostListItem
+    },
     apollo:{
         posts: gql`
         {
@@ -18,9 +24,9 @@ export default {
             {
                 id
                 title
+                lead
             }
         }`
-
     }
 }
 </script>

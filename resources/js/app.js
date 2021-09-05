@@ -8,6 +8,8 @@ import Post from './Post.vue';
 import ApolloClient from 'apollo-boost'
 import VueApollo from 'vue-apollo'
 
+import TopicPostList from './TopicPostList.vue'
+
 
 
 window.Vue = require('vue');
@@ -19,6 +21,11 @@ const routes = [
         path:'/',
         name: 'index', 
         component: PostList
+    },
+    {
+        path:'/topics/:slug',
+        name: 'topic', 
+        component: TopicPostList
     },
     {
         path:'/post/:id',

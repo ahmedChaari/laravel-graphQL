@@ -5654,6 +5654,12 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   apollo: {
@@ -5704,7 +5710,58 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     PostListItem: _components_PostListItem_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   apollo: {
-    posts: graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        {\n            posts\n            {\n                id\n                title\n                lead\n            }\n        }"])))
+    posts: graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        {\n            posts\n            {\n                id\n                title\n                lead \n                created_at\n                author{\n                    id\n                    name\n                }\n                topic{\n                    name\n                    slug\n                }\n            }\n        }"])))
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/TopicPostList.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/TopicPostList.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_PostListItem_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/PostListItem.vue */ "./resources/js/components/PostListItem.vue");
+var _templateObject;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    PostListItem: _components_PostListItem_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  apollo: {
+    topic: {
+      query: graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n                query($slug: String!){\n                    topic(slug: $slug){\n                        id\n                        name\n                        posts{\n                            id\n                            title\n                            lead\n                            created_at\n                            author{\n                                id\n                                name\n                            }\n                            topic{\n                                name\n                                slug\n                            }\n                        }\n                    }\n                }\n            "]))),
+      variables: function variables() {
+        return {
+          slug: this.$route.params.slug
+        };
+      }
+    }
   }
 });
 
@@ -5719,6 +5776,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -30827,15 +30887,36 @@ var render = function() {
       _vm.$apollo.loading
         ? _c("div", [_vm._v("loading.....")])
         : _c("div", [
-            _c("div", { staticClass: "text-lg text-gray-600" }, [
-              _vm._v(
-                "By " +
-                  _vm._s(_vm.post.author.name) +
-                  " in " +
-                  _vm._s(_vm.post.topic.name) +
-                  " . 3 hours ago"
-              )
-            ]),
+            _c(
+              "div",
+              { staticClass: "text-lg text-gray-600" },
+              [
+                _vm._v(
+                  "By " + _vm._s(_vm.post.author.name) + " in \n            "
+                ),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "underline hover:text-red-500",
+                    attrs: {
+                      to: {
+                        name: "topic",
+                        params: { slug: _vm.post.topic.slug }
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.post.topic.name) +
+                        " .\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" . 3 hours ago")
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("h1", { staticClass: "text-5xl mt-10 font-bold md-12" }, [
               _vm._v(_vm._s(_vm.post.title))
@@ -30863,13 +30944,34 @@ var render = function() {
                   _vm._v("Written by " + _vm._s(_vm.post.author.name))
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "text-gray-600" }, [
-                  _vm._v(
-                    "Published in " +
-                      _vm._s(_vm.post.topic.name) +
-                      " on May 19, 2020"
-                  )
-                ])
+                _c(
+                  "div",
+                  { staticClass: "text-gray-600" },
+                  [
+                    _vm._v("Published in \n                    "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "underline hover:text-red-500",
+                        attrs: {
+                          to: {
+                            name: "topic",
+                            params: { slug: _vm.post.topic.slug }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.post.topic.name) +
+                            " .\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" on May 19, 2020")
+                  ],
+                  1
+                )
               ])
             ])
           ])
@@ -30905,13 +31007,77 @@ var render = function() {
         "container mx-auto px-4 w-full md:w-3/4 lg:w-3/5 xl:w-1/2 my-20"
     },
     [
-      _c("h2", { staticClass: "text-4xl" }, [_vm._v(" List Of post")]),
+      _c("h2", { staticClass: "text-4xl" }, [_vm._v(" All Posts")]),
       _vm._v(" "),
       _vm.$apollo.loading
         ? _c("div")
         : _c(
             "div",
             _vm._l(_vm.posts, function(post) {
+              return _c("PostListItem", {
+                key: post.id,
+                staticClass: "mt-10",
+                attrs: { post: post }
+              })
+            }),
+            1
+          )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/TopicPostList.vue?vue&type=template&id=9c616902&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/TopicPostList.vue?vue&type=template&id=9c616902& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "container mx-auto px-4 w-full md:w-3/4 lg:w-3/5 xl:w-1/2 my-20"
+    },
+    [
+      _c(
+        "h2",
+        { staticClass: "text-4xl" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "text-gray-600 hover:underline",
+              attrs: { to: { name: "index" } }
+            },
+            [_vm._v("\n           All Posts")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-gray-600" }, [_vm._v("/")]),
+          _vm._v(_vm._s(_vm.topic.name) + "\n          ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.$apollo.loading
+        ? _c("div")
+        : _c(
+            "div",
+            _vm._l(_vm.topic.posts, function(post) {
               return _c("PostListItem", {
                 key: post.id,
                 staticClass: "mt-10",
@@ -30964,9 +31130,31 @@ var render = function() {
         _vm._v(_vm._s(_vm.post.lead) + " ")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "text-sm text-gray-600" }, [
-        _vm._v("\n        By Piot Ahmed in links .3 hous ago\n    ")
-      ])
+      _c(
+        "div",
+        { staticClass: "text-sm text-gray-600" },
+        [
+          _vm._v(
+            "\n        By  " + _vm._s(_vm.post.author.name) + " in \n        "
+          ),
+          _c(
+            "router-link",
+            {
+              staticClass: "underline hover:text-red-500",
+              attrs: {
+                to: { name: "topic", params: { slug: _vm.post.topic.slug } }
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.post.topic.name) + " .\n        "
+              )
+            ]
+          ),
+          _vm._v(" " + _vm._s(_vm.post.created_at) + "\n    ")
+        ],
+        1
+      )
     ],
     1
   )
@@ -47065,6 +47253,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/TopicPostList.vue":
+/*!****************************************!*\
+  !*** ./resources/js/TopicPostList.vue ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TopicPostList_vue_vue_type_template_id_9c616902___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TopicPostList.vue?vue&type=template&id=9c616902& */ "./resources/js/TopicPostList.vue?vue&type=template&id=9c616902&");
+/* harmony import */ var _TopicPostList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TopicPostList.vue?vue&type=script&lang=js& */ "./resources/js/TopicPostList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TopicPostList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TopicPostList_vue_vue_type_template_id_9c616902___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TopicPostList_vue_vue_type_template_id_9c616902___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/TopicPostList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/TopicPostList.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/TopicPostList.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopicPostList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./TopicPostList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/TopicPostList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopicPostList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/TopicPostList.vue?vue&type=template&id=9c616902&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/TopicPostList.vue?vue&type=template&id=9c616902& ***!
+  \***********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopicPostList_vue_vue_type_template_id_9c616902___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./TopicPostList.vue?vue&type=template&id=9c616902& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/TopicPostList.vue?vue&type=template&id=9c616902&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopicPostList_vue_vue_type_template_id_9c616902___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopicPostList_vue_vue_type_template_id_9c616902___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -47082,6 +47339,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Post_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Post.vue */ "./resources/js/Post.vue");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! apollo-boost */ "./node_modules/apollo-boost/lib/bundle.esm.js");
 /* harmony import */ var vue_apollo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-apollo */ "./node_modules/vue-apollo/dist/vue-apollo.esm.js");
+/* harmony import */ var _TopicPostList_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./TopicPostList.vue */ "./resources/js/TopicPostList.vue");
+
 
 
 
@@ -47095,6 +47354,10 @@ var routes = [{
   path: '/',
   name: 'index',
   component: _PostList_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  path: '/topics/:slug',
+  name: 'topic',
+  component: _TopicPostList_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
   path: '/post/:id',
   name: 'post',

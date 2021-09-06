@@ -8,7 +8,8 @@ import Post from './Post.vue';
 import ApolloClient from 'apollo-boost'
 import VueApollo from 'vue-apollo'
 
-import TopicPostList from './TopicPostList.vue'
+import TopicPostList from './TopicPostList.vue';
+import AuthorPostList from './AuthorPostList.vue';
 
 
 
@@ -26,6 +27,11 @@ const routes = [
         path:'/topics/:slug',
         name: 'topic', 
         component: TopicPostList
+    },
+    {
+        path:'/authors/:id',
+        name: 'author', 
+        component: AuthorPostList
     },
     {
         path:'/post/:id',

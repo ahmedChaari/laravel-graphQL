@@ -10,6 +10,7 @@ import VueApollo from 'vue-apollo'
 
 import TopicPostList from './TopicPostList.vue';
 import AuthorPostList from './AuthorPostList.vue';
+import NotFound from './NotFound.vue';
 
 import moment from 'moment';
 
@@ -34,11 +35,17 @@ const routes = [
         name: 'author', 
         component: AuthorPostList
     },
+    
     {
         path:'/post/:id',
         name: 'post',
         component: Post
-    }
+    },
+    {
+        path:'*',
+        name:'404', 
+        component: NotFound
+    },
 ];
 
 Vue.use(VueApollo);

@@ -9,7 +9,7 @@
                  in 
                 <router-link :to="{name: 'topic', params: {slug: post.topic.slug}}" class="underline hover:text-red-500" >
                     {{ post.topic.name }}&nbsp;.
-                </router-link> . 3 hours ago</div>
+                </router-link> . {{ post.created_at | timeago }}</div>
             <h1 class="text-5xl mt-10 font-bold md-12">{{ post.title }}</h1>
             <p class="text-gray-700 pb-3 mb-12 whitespace-pre-line">{{ post.content }}</p>
             <div class="mb-24 flex">
@@ -25,7 +25,7 @@
                     <div class="text-gray-600">Published in 
                         <router-link :to="{name: 'topic', params: {slug: post.topic.slug}}" class="underline hover:text-red-500" >
                             {{ post.topic.name }}&nbsp;.
-                        </router-link> on May 19, 2020</div>
+                        </router-link>{{ post.created_at | longDate }}</div>
                 </div>
             </div>
         </div>
@@ -44,6 +44,7 @@ export default {
                         id
                         title
                         content
+                        created_at
                         author {
                             id
                             name
